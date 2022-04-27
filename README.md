@@ -1,3 +1,5 @@
+[![CI](https://github.com/martlemoree/finview/actions/workflows/tests.yml/badge.svg)](https://github.com/martlemoree/finview/actions/workflows/tests.yml)
+
 # finview
 
 # project task for module WebTech at HTW for Business Informatics studies

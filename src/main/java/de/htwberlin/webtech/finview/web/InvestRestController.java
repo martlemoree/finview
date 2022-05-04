@@ -23,5 +23,4 @@ public class InvestRestController {
     public ResponseEntity<List<Invest>> fetchInvests() {
         return ResponseEntity.ok(invests);
     }
-
 }

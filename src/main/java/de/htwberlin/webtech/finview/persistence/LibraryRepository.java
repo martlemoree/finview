@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface InvestRepository extends JpaRepository<InvestEntity, Long> {
+public interface LibraryRepository extends JpaRepository<LibraryEntity, Long> {
 
-    List<InvestEntity> findAllByInvestName(String investName);
+    List<LibraryEntity> findAllByLibraryName(String libraryName);
 }

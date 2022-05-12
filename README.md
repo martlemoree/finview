@@ -1,8 +1,8 @@
 [![CI](https://github.com/martlemoree/finview/actions/workflows/tests.yml/badge.svg)](https://github.com/martlemoree/finview/actions/workflows/tests.yml)
 
-# finview
+# libview
 
 # project task for module WebTech at HTW for Business Informatics studies
 
-# web page for a financial overview
-# collect all your investments over different apps on one page and get an overview of your complete wealth and some more information
+# web page for an overview of programming languages
+# filter by language or field of use to get the perfect language or find example projects where the library was used

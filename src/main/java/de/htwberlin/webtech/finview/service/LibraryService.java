@@ -64,7 +64,7 @@ public class LibraryService {
     }
 
     private Library transformEntity(LibraryEntity libraryEntity) {
-        var programmingLanguage = libraryEntity.getProgrammingLanguage() != null ? libraryEntity.getProgrammingLanguage().name() : ProgrammingLanguage.OTHER.name();
+        var programmingLanguage = libraryEntity.getProgrammingLanguage() != null ? libraryEntity.getProgrammingLanguage().name() : ProgrammingLanguage. OTHER.name();
         return new Library(
                 libraryEntity.getId(),
                 libraryEntity.getLibraryName(),

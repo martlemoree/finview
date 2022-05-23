@@ -1,5 +1,6 @@
 package de.htwberlin.webtech.finview.service;
 
+import de.htwberlin.webtech.finview.persistence.LibraryRepository;
 import de.htwberlin.webtech.finview.persistence.ProjectEntity;
 import de.htwberlin.webtech.finview.persistence.ProjectRepository;
 import de.htwberlin.webtech.finview.web.api.Project;
@@ -13,9 +14,13 @@ import java.util.stream.Collectors;
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
+    private final LibraryRepository libraryRepository;
+    private final LibraryTransformer libraryTransformer;
 
-    public ProjectService(ProjectRepository projectRepository) {
+    public ProjectService(ProjectRepository projectRepository, LibraryRepository libraryRepository, LibraryTransformer libraryTransformer) {
         this.projectRepository = projectRepository;
+        this.libraryRepository = libraryRepository;
+        this.libraryTransformer = libraryTransformer;
     }
 
     public List<Project> findAll() {
@@ -26,7 +31,8 @@ public class ProjectService {
     }
 
     public Project create(ProjectManipulationRequest request) {
-        var projectEntity = new ProjectEntity(request.getProjectName(), request.getGithubRepository());
+        var library = libraryRepository.findById(request.getLibraryId()).orElseThrow();
+        var projectEntity = new ProjectEntity(request.getProjectName(), request.getGithubRepository(), library);
         projectEntity = projectRepository.save(projectEntity);
         return transformEntity(projectEntity);
     }
@@ -35,7 +41,7 @@ public class ProjectService {
         return new Project(
                 projectEntity.getId(),
                 projectEntity.getProjectName(),
-                projectEntity.getGithubRepository()
-        );
+                projectEntity.getGithubRepository(),
+                libraryTransformer.transformEntity(projectEntity.getLibrary()));
     }
 }

@@ -4,10 +4,12 @@ public class ProjectManipulationRequest {
 
     private String projectName;
     private String githubRepository;
+    private Long libraryId;
 
-    public ProjectManipulationRequest(String projectName, String githubRepository) {
+    public ProjectManipulationRequest(String projectName, String githubRepository, Long libraryId) {
         this.projectName = projectName;
         this.githubRepository = githubRepository;
+        this.libraryId = libraryId;
     }
 
     public String getProjectName() {
@@ -24,5 +26,13 @@ public class ProjectManipulationRequest {
 
     public void setGithubRepository(String githubRepository) {
         this.githubRepository = githubRepository;
+    }
+
+    public Long getLibraryId() {
+        return libraryId;
+    }
+
+    public void setLibraryId(Long libraryId) {
+        this.libraryId = libraryId;
     }
 }

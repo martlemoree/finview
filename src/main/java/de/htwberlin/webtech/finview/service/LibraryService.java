@@ -14,28 +14,30 @@ import java.util.stream.Collectors;
 public class LibraryService {
 
     private final LibraryRepository libraryRepository;
+    private final LibraryTransformer libraryTransformer;
 
-    public LibraryService(LibraryRepository libraryRepository) {
+    public LibraryService(LibraryRepository libraryRepository, LibraryTransformer libraryTransformer) {
         this.libraryRepository = libraryRepository;
+        this.libraryTransformer = libraryTransformer;
     }
 
     public List<Library> findAll() {
         List<LibraryEntity> libraries = libraryRepository.findAll();
         return libraries.stream()
-                .map(this::transformEntity)
+                .map(libraryTransformer::transformEntity)
                 .collect(Collectors.toList());
     }
 
     public Library findById(Long id) {
         var libraryEntity = libraryRepository.findById(id);
-        return libraryEntity.map(this::transformEntity).orElse(null);
+        return libraryEntity.map(libraryTransformer::transformEntity).orElse(null);
     }
 
     public Library create(LibraryManipulationRequest request) {
         var programmingLanguage = ProgrammingLanguage.valueOf(request.getProgrammingLanguage());
         var libraryEntity = new LibraryEntity(request.getLibraryName(), programmingLanguage, request.getLatestVersion(), request.getUseField());
         libraryEntity = libraryRepository.save(libraryEntity);
-        return transformEntity(libraryEntity);
+        return libraryTransformer.transformEntity(libraryEntity);
     }
 
     public Library update(Long id, LibraryManipulationRequest request) {
@@ -51,7 +53,7 @@ public class LibraryService {
         libraryEntity.setUseField(request.getUseField());
         libraryEntity = libraryRepository.save(libraryEntity);
 
-        return transformEntity(libraryEntity);
+        return libraryTransformer.transformEntity(libraryEntity);
     }
 
     public boolean deleteById(Long id) {
@@ -61,16 +63,5 @@ public class LibraryService {
 
         libraryRepository.deleteById(id);
         return true;
-    }
-
-    private Library transformEntity(LibraryEntity libraryEntity) {
-        var programmingLanguage = libraryEntity.getProgrammingLanguage() != null ? libraryEntity.getProgrammingLanguage().name() : ProgrammingLanguage. OTHER.name();
-        return new Library(
-                libraryEntity.getId(),
-                libraryEntity.getLibraryName(),
-                programmingLanguage,
-                libraryEntity.getLatestVersion(),
-                libraryEntity.getUseField()
-        );
     }
 }

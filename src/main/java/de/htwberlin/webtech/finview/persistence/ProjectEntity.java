@@ -16,16 +16,17 @@ public class ProjectEntity {
     @Column(name = "github_repository")
     private String githubRepository;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "library_id", referencedColumnName = "library_id")
     private LibraryEntity library;
 
     public ProjectEntity() {
     }
 
-    public ProjectEntity(String projectName, String githubRepository) {
+    public ProjectEntity(String projectName, String githubRepository, LibraryEntity library) {
         this.projectName = projectName;
         this.githubRepository = githubRepository;
+        this.library = library;
     }
 
     public Long getId() {
@@ -46,5 +47,13 @@ public class ProjectEntity {
 
     public void setGithubRepository(String githubRepository) {
         this.githubRepository = githubRepository;
+    }
+
+    public LibraryEntity getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(LibraryEntity library) {
+        this.library = library;
     }
 }

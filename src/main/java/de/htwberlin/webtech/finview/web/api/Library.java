@@ -1,5 +1,7 @@
 package de.htwberlin.webtech.finview.web.api;
 
+import java.util.List;
+
 public class Library {
 
     private long id;
@@ -7,13 +9,15 @@ public class Library {
     private String programmingLanguage;
     private String latestVersion;
     private String useField;
+    private List<Long> projectIds;
 
-    public Library(long id, String libraryName, String programmingLanguage, String latestVersion, String useField) {
+    public Library(long id, String libraryName, String programmingLanguage, String latestVersion, String useField, List<Long> projectIds) {
         this.id = id;
         this.libraryName = libraryName;
         this.programmingLanguage = programmingLanguage;
         this.latestVersion = latestVersion;
         this.useField = useField;
+        this.projectIds = projectIds;
     }
 
     public long getId() {
@@ -54,5 +58,13 @@ public class Library {
 
     public void setUseField(String useField) {
         this.useField = useField;
+    }
+
+    public List<Long> getProjectIds() {
+        return projectIds;
+    }
+
+    public void setProjectIds(List<Long> projectIds) {
+        this.projectIds = projectIds;
     }
 }

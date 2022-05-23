@@ -5,11 +5,13 @@ public class Project {
     private Long id;
     private String projectName;
     private String githubRepository;
+    private Library library;
 
-    public Project(Long id, String projectName, String githubRepository) {
+    public Project(Long id, String projectName, String githubRepository, Library library) {
         this.id = id;
         this.projectName = projectName;
         this.githubRepository = githubRepository;
+        this.library = library;
     }
 
     public Long getId() {
@@ -34,5 +36,13 @@ public class Project {
 
     public void setGithubRepository(String githubRepository) {
         this.githubRepository = githubRepository;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 }

@@ -1,6 +1,8 @@
 package de.htwberlin.webtech.finview.persistence;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "libraries")
 public class LibraryEntity {
@@ -22,6 +24,9 @@ public class LibraryEntity {
 
     @Column(name = "use_field")
     private String useField;
+
+    @OneToMany(mappedBy = "library", fetch = FetchType.EAGER)
+    private List<ProjectEntity> projects = new ArrayList<>();
 
     public LibraryEntity(String libraryName, ProgrammingLanguage programmingLanguage, String latestVersion, String useField) {
         this.libraryName = libraryName;
@@ -66,5 +71,13 @@ public class LibraryEntity {
 
     public void setUseField(String useField) {
         this.useField = useField;
+    }
+
+    public List<ProjectEntity> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<ProjectEntity> projects) {
+        this.projects = projects;
     }
 }

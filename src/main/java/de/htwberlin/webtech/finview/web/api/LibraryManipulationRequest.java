@@ -14,6 +14,8 @@ public class LibraryManipulationRequest {
         this.useField = useField;
     }
 
+    public LibraryManipulationRequest() {}
+
     public String getLibraryName() {
         return libraryName;
     }

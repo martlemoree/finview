@@ -12,6 +12,8 @@ public class ProjectManipulationRequest {
         this.libraryId = libraryId;
     }
 
+    public ProjectManipulationRequest() {}
+
     public String getProjectName() {
         return projectName;
     }

@@ -6,7 +6,7 @@ public enum ProgrammingLanguage {
     JAVA,
     PHP,
     CSS,
-    CHASH,
+    CSHARP,
     CPLUSPLUS,
     TYPESCRIPT,
     RUBY,

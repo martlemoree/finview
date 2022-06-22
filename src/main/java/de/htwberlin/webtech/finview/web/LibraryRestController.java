@@ -6,6 +6,7 @@ import de.htwberlin.webtech.finview.web.api.LibraryManipulationRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -31,10 +32,16 @@ public class LibraryRestController {
     }
 
     @PostMapping(path = "/api/v1/libraries")
-    public ResponseEntity<Void> createLibrary(@RequestBody LibraryManipulationRequest request) throws URISyntaxException {
-        var library = libraryService.create(request);
-        URI uri = new URI("/api/v1/libraries/" + library.getId());
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<Void> createLibrary(@Valid @RequestBody LibraryManipulationRequest request) throws URISyntaxException {
+        var valid = validate(request);
+        if (valid) {
+            var library = libraryService.create(request);
+            URI uri = new URI("/api/v1/libraries/" + library.getId());
+            return ResponseEntity.created(uri).build();
+        }
+        else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping(path = "/api/v1/libraries/{id}")
@@ -47,5 +54,16 @@ public class LibraryRestController {
     public ResponseEntity<Void> deleteLibrary(@PathVariable Long id) {
         boolean successful = libraryService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
+    private boolean validate(LibraryManipulationRequest request) {
+        return request.getLibraryName() != null
+                && !request.getLibraryName().isBlank()
+                && request.getProgrammingLanguage() != null
+                && !request.getProgrammingLanguage().isBlank()
+                && request.getLatestVersion() != null
+                && !request.getLatestVersion().isBlank()
+                && request.getUseField() != null
+                && !request.getUseField().isBlank();
     }
 }

@@ -1,8 +1,6 @@
 package de.htwberlin.webtech.finview.persistence;
 
 public enum ProgrammingLanguage {
-    PYTHON,
-    JAVASCRIPT,
     JavaScript,
     Python,
     Java,

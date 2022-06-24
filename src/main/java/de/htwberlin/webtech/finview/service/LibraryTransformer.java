@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class LibraryTransformer {
 
     public Library transformEntity(LibraryEntity libraryEntity) {
-        var programmingLanguage = libraryEntity.getProgrammingLanguage() != null ? libraryEntity.getProgrammingLanguage().name() : ProgrammingLanguage. OTHER.name();
+        var programmingLanguage = libraryEntity.getProgrammingLanguage() != null ? libraryEntity.getProgrammingLanguage().name() : ProgrammingLanguage. other.name();
         var projectIds = libraryEntity.getProjects().stream().map(ProjectEntity::getId).collect(Collectors.toList());
         return new Library(
                 libraryEntity.getId(),

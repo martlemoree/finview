@@ -1,25 +1,39 @@
 package de.htwberlin.webtech.finview.persistence;
 
 public enum ProgrammingLanguage {
-    JAVASCRIPT,
     PYTHON,
-    JAVA,
+    JAVASCRIPT,
+    JavaScript,
+    Python,
+    Java,
     PHP,
     CSS,
-    CSHARP,
-    CPLUSPLUS,
-    TYPESCRIPT,
-    RUBY,
+    CSharp {
+        public String toString() {
+            return "C#";
+        }
+    },
+    CPlusPlus {
+        public String toString() {
+            return "C++";
+        }
+    },
+    TypeScript,
+    Ruby,
     C,
-    SWIFT,
+    Swift,
     R,
-    OBJECTIVEC,
-    SHELL,
-    SCALA,
-    GO,
-    POWERSHELL,
-    KOTLIN,
-    RUST,
-    DART,
-    OTHER
+    ObjectiveC {
+        public String toString() {
+            return "Objective-C";
+        }
+    },
+    Shell,
+    Scala,
+    Go,
+    PowerShell,
+    Kotlin,
+    Rust,
+    Dart,
+    other
 }

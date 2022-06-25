@@ -35,7 +35,7 @@ public class LibraryService {
 
     public Library create(LibraryManipulationRequest request) {
         var programmingLanguage = ProgrammingLanguage.valueOf(request.getProgrammingLanguage());
-        var libraryEntity = new LibraryEntity(request.getLibraryName(), programmingLanguage, request.getLatestVersion(), request.getUseField());
+        var libraryEntity = new LibraryEntity(request.getLibraryName(), programmingLanguage, request.getLatestVersion(), request.getUseField(), request.getWebsite(), request.getUpvotes(), request.getDownvotes(), request.getCreatedAt(), request.getUpdatedAt());
         libraryEntity = libraryRepository.save(libraryEntity);
         return libraryTransformer.transformEntity(libraryEntity);
     }
@@ -51,6 +51,11 @@ public class LibraryService {
         libraryEntity.setProgrammingLanguage(ProgrammingLanguage.valueOf(request.getProgrammingLanguage()));
         libraryEntity.setLatestVersion(request.getLatestVersion());
         libraryEntity.setUseField(request.getUseField());
+        libraryEntity.setWebsite(request.getWebsite());
+        libraryEntity.setUpvotes(request.getUpvotes());
+        libraryEntity.setDownvotes(request.getDownvotes());
+        libraryEntity.setCreatedAt(request.getCreatedAt());
+        libraryEntity.setUpdatedAt(request.getUpdatedAt());
         libraryEntity = libraryRepository.save(libraryEntity);
 
         return libraryTransformer.transformEntity(libraryEntity);

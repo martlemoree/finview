@@ -11,7 +11,7 @@ public class LibraryManipulationRequest {
     private String libraryName;
 
     @Pattern(
-            regexp = "JavaScript|Python|Java|PHP|CSS|CSharp|CPlusPlus|TypeScript|Ruby|C|Swift|R|ObjectiveC|Shell|Scala|Go|PowerShell|Kotlin|Rust|Dart|other",
+            regexp = "JavaScript|Python|Java|PHP|CSS|CSharp|C#|CPlusPlus|C\\+\\+|TypeScript|Ruby|C|Swift|R|ObjectiveC|Shell|Scala|Go|PowerShell|Kotlin|Rust|Dart|other",
             message = "Please select a known programming language or choose 'other'."
     )
     private String programmingLanguage;

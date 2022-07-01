@@ -1,6 +1,7 @@
 package de.htwberlin.webtech.finview.web.api;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Set;
 
 public class Library {
@@ -13,12 +14,12 @@ public class Library {
     private String website;
     private int upvotes;
     private int downvotes;
-    private Date createdAt;
-    private Date updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private Set<Long> projectIds;
     private Set<Long> installIds;
 
-    public Library(long id, String libraryName, String programmingLanguage, String latestVersion, String useField, String website, int upvotes, int downvotes, Date createdAt, Date updatedAt, Set<Long> projectIds, Set<Long> installIds) {
+    public Library(long id, String libraryName, String programmingLanguage, String latestVersion, String useField, String website, int upvotes, int downvotes, Timestamp createdAt, Timestamp updatedAt, Set<Long> projectIds, Set<Long> installIds) {
         this.id = id;
         this.libraryName = libraryName;
         this.programmingLanguage = programmingLanguage;
@@ -97,20 +98,14 @@ public class Library {
         this.downvotes = downvotes;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public String getCreatedAt() {
+        LocalDate date = createdAt.toLocalDateTime().toLocalDate();
+        return date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth();
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public String getUpdatedAt() {
+        LocalDate date = updatedAt.toLocalDateTime().toLocalDate();
+        return date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth();
     }
 
     public Set<Long> getProjectIds() {

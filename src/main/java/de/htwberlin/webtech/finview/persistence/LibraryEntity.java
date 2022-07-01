@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class LibraryEntity {
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Timestamp createdAt; // LocalDate
 
     @UpdateTimestamp
     @Column(name = "updated_at")

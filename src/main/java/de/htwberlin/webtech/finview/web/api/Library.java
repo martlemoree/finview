@@ -98,10 +98,9 @@ public class Library {
         this.downvotes = downvotes;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-        //LocalDate date = createdAt.toLocalDateTime().toLocalDate();
-        //return date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth();
+    public String getCreatedAt() {
+        LocalDate date = createdAt.toLocalDateTime().toLocalDate();
+        return date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth();
     }
 
     public String getUpdatedAt() {
